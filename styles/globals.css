@@ -43,7 +43,7 @@ a {
   justify-content: space-between;
   align-items: center;
 
-  min-height: 100vh;
+  /* min-height: 100vh; */
 }
 
 .app__wrapper_info {
@@ -138,6 +138,15 @@ a {
   font-size: 16px;
 }
 
+.p__opensans-code{
+  font-family: 'Open Sans', sans-serif;
+  color: white;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 28px;
+  font-size: 16px;
+}
+
 .headtext__cormorant {
   font-family: 'Cormorant Upright', serif;
   color: #DCCA87;
@@ -154,8 +163,6 @@ a {
 }
 
 /* Chef */
-
-
 
 .app__chef-content {
   display: flex;
@@ -714,6 +721,7 @@ stroke-dashoffset:410;
 }
 
 /* Newsletter */
+
 .app__newsletter{
   padding: 4rem 15%;
   border: 1px solid #DCCA87;
@@ -729,13 +737,16 @@ stroke-dashoffset:410;
   margin-top: 3rem
 }
 
+.newsletter{
+  flex-direction: column;
+}
+
 .app__newsletter-input input{
   width: 620px;
   border: 1px solid #DCCA87;
   font-size: 1rem;
   font-family: 'Open Sans', sans-serif;
   color: white;
-  margin-right: 2rem;
   padding: 0.75rem 1rem;
   background: #0C0C0C;
 }
@@ -744,7 +755,16 @@ stroke-dashoffset:410;
   gap:3rem
 }
 
-.reservation select{
+input {
+  color-scheme: dark;
+}
+
+.rev-input{
+  width: 100%;
+  position: relative;
+}
+
+.rev-input select{
   width: 100%;
   border: 1px solid #DCCA87;
   font-size: 1rem;
@@ -754,7 +774,7 @@ stroke-dashoffset:410;
   padding: 0.75rem 1rem;
   background: #0C0C0C
 }
-.reservation input{
+.rev-input input{
   width: 100%;
   border: 1px solid #DCCA87;
   font-size: 1rem;
@@ -765,11 +785,23 @@ stroke-dashoffset:410;
   background: #0C0C0C
 }
 
+input.input-error,
+select.input-error {
+  border: 2px solid #fc8181;
+}
+
+.error{
+  color: #fc8181;
+  position: absolute;
+  top: -90%;
+}
+
 .confirmation input{
   margin-right: 0;
 }
 .app__newsletter-input button {
   width: max-content;
+  margin-top: 1.5rem;
 }
 
 .rev-btn{
@@ -801,6 +833,28 @@ stroke-dashoffset:410;
 .rev-btns{
   flex-direction: row;
   gap: 2rem;
+}
+
+.rev-btns button:disabled{
+  opacity: 0.35;
+}
+
+.modify-btn:disabled{
+  opacity: 0.35;
+}
+
+.modify-input{
+  display: flex;
+  margin-top:0;
+  gap: 1rem
+}
+
+.modify-input input, select{
+  gap:1rem
+}
+
+.modify-btn{
+  margin-top: 1.5rem;
 }
 
 .modify{
@@ -867,9 +921,22 @@ stroke-dashoffset:410;
 /* Confirm Reservation */
 
 .app__check{
-  background-image: url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80');
-  object-fit: cover;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+  
+}
+
+.bg-confirm-img{
+  position: absolute;
+  width: 100%;
+  height: 110%;
+  top: 0;
+  z-index: -1;
+}
+
+.reserve{
+  margin-top: 3rem;
+  width: 100%;
 }
 
 .app__confirm {
@@ -885,13 +952,23 @@ stroke-dashoffset:410;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 1rem;
 }
 
 .code-num p{
   text-align: center;
 }
 
-
+.code{
+  font-family: 'Cormorant Upright', serif;
+  color: #DCCA87;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  font-feature-settings: 'tnum' on, 'lnum' on;
+  line-height: 29.9px;
+  font-size: 23px;
+  margin: 0
+}
 
 /* Cancel */
 
@@ -900,7 +977,7 @@ stroke-dashoffset:410;
   position: fixed;
   inset: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   z-index: 99;
 }
 
@@ -918,6 +995,7 @@ stroke-dashoffset:410;
   box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.75);
   border-radius: 8px;
   z-index: 99;
+  border: 2px solid #DCCA87;
 }
 
 .modalContainer img {
@@ -938,11 +1016,18 @@ stroke-dashoffset:410;
 .modalRight h1{
   font-size: 2.5rem;
   color: #0C0C0C;
+  margin-bottom: 1rem;
 }
 
 .modalRight p{
   font-size: 1.2rem;
   color: #0C0C0C;
+}
+
+.modalRight .error {
+  color: #fc8181;
+  position: absolute;
+  top: -110%;
 }
 
 .closeBtn{
@@ -958,28 +1043,48 @@ stroke-dashoffset:410;
   width: 100%;
   height: 100vh;
   position: relative;
+  background-color: #0C0C0C;
+}
+
+.bg-img{
+  height: 100%;
+  position: relative;
 }
 
 .app__menu-cate{
   display: flex;
   flex-direction: column;
   position: absolute;
-  left: 10%;
-  top: 30%;
-  gap: 2rem;
+  left: 6%;
+  top: 40%;
+  gap: 3rem;
 }
 .app__menu img{
   height: 100%;
   width: 100%;
   object-fit: cover;
-  transition: 2s ease-out;
+  transition: all 1s;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.appear{
+  opacity: 1;
+}
+
+.dis{
+  opacity: 0;
 }
 
 .app__menu-cate h1{
   color: #fff;
+  font-weight: 400;
   font-size: 3rem;
   font-family: 'Cormorant Upright', serif;
   margin: 0;
+  position: relative;
+  width: fit-content;
 }
 
 .app__menu-cate h1::after{
@@ -991,20 +1096,23 @@ stroke-dashoffset:410;
   left: 0;
   background-color: white;
   transform-origin: bottom right;
-  transition: transform 0.25s ease-out;
+  transition: transform 0.3s ease-out;
   transform: scaleX(0);
 }
 
-.app__menu-cate h1:hover::after{
+.app__menu-cate .hover::after{
   transform: scaleX(1);
   transform-origin: bottom left;
 }
 
 
-@media screen and (min-width: 2000px) {
-  .app__header{
-    margin-top: -10rem;
-  }
+/* Modify */
+.modify-suc p{
+  font-family: 'Cormorant Upright', serif;
+  font-size: 3rem;
+}
+
+@media screen and (min-width: 2500px) {
 
   .app__footer-headtext{
     font-size: 51px;
@@ -1012,12 +1120,7 @@ stroke-dashoffset:410;
   }
 
   .reservation select{
-    font-size: 2rem;
     color: #DCCA87;
-  }
-
-  .app__newsletter-input input{
-    font-size: 2rem;
   }
 
   .app__gallery-content{
@@ -1032,12 +1135,6 @@ stroke-dashoffset:410;
 
   .navbar-logo img{
     width: 210px
-  }
-
-  .custom__button,
-  .p__cormorant {
-    font-size: 37px;
-    line-height: 67px;
   }
 
   .p__opensans {
@@ -1121,8 +1218,11 @@ stroke-dashoffset:410;
   }
 
   .app__newsletter-input input{
-    margin: 0 0 2rem 0;
     width: 90%;
+  }
+
+  .rev-input input, select{
+    width: 100%;
   }
   
   .app__gallery{
@@ -1144,7 +1244,23 @@ stroke-dashoffset:410;
 
 
 @media screen and (max-width: 650px) {
+  .modify-input{
+    gap:2rem
+  }
 
+  .bg-confirm-img{
+    height: 135%;
+    object-fit: cover;
+  }
+
+  .app__wrapper_img{
+    height: 100%;
+    width: 100%;
+  }
+  .modalContainer img{
+    border-radius: 0;
+    height: 30%;
+  }
   .modalContainer{
     flex-direction: column;
     top: 0;
@@ -1222,15 +1338,7 @@ stroke-dashoffset:410;
   .app__chef-content{
     margin-top: 2rem;
   }
-
-  .chef {
-    margin-top: -17rem;
-  }
   
-  .chef-content{
-    margin-top: -6rem;
-  }
-
   .app__specialMenu-menu_img{
     width: 100%;
   }

@@ -7,10 +7,10 @@ import SubHeading from './SubHeading'
 function Chef() {
   return (
     <div className='app__bg app__wrapper section__padding chef'>
-        <div className='app__wrapper_img app__wrapper chef-img'>
+        <div className='app__wrapper_img  '>
             <Image src={chef} alt="chef"/>
         </div>
-        <div className='app__wrapper_info chef-content'>
+        <div className='app__wrapper_info'>
             <SubHeading title="Chef's Word"/>
             <h1 className='headtext__cormorant'>What We Believe In</h1>
 

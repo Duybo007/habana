@@ -10,7 +10,7 @@ function NewsLetter() {
             <p className='p__opensans'>And never miss latest Updates!</p>
         </div>
 
-        <div className='app__newsletter-input flex__center'>
+        <div className='app__newsletter-input flex__center newsletter'>
             <input type="email" placeholder="Enter your e-mail address" />
             <button className='custom__button'>Subscribe</button>
         </div>
